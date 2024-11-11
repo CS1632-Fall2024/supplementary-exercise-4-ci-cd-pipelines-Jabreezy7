@@ -1,7 +1,9 @@
 package edu.pitt.cs;
 
 import org.mockito.Mockito;
-import static org.mockito.Mockito.*; 
+import static org.mockito.Mockito.*;
+
+import org.mockito.Mock; 
 
 public interface RentACat {
 	public static RentACat createInstance(InstanceType type) {

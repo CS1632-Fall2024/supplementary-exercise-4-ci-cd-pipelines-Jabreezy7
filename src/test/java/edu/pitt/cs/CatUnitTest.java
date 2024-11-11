@@ -7,6 +7,7 @@ import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 import static org.junit.Assert.*;
 
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.*;
 
@@ -32,6 +33,7 @@ public class CatUnitTest {
 		// Passing InstanceType.MOCK as the first parameter will create a mock cat using Mockito.
 		// Which type is the correct choice for this unit test?  I'll leave it up to you.  The answer is in the Unit Testing Part 2 lecture. :)
 		// TODO: Fill in
+		c = Cat.createInstance(InstanceType.IMPL, 1, "Jennyanydots");
 	}
 
 	@After
@@ -53,6 +55,9 @@ public class CatUnitTest {
 	@Test
 	public void testGetId() {
 		// TODO: Fill in
+		int ret = c.getId();
+
+		assertEquals("Cat ID is not 1", 1, ret);
 	}
 
 	/**
@@ -67,6 +72,9 @@ public class CatUnitTest {
 	@Test
 	public void testGetName() {
 		// TODO: Fill in
+		String name = c.getName();
+
+		assertEquals("Cat name is not Jennyanydots","Jennyanydots", name);
 	}
 
 	/**
@@ -81,6 +89,9 @@ public class CatUnitTest {
 	@Test
 	public void testGetRented() {
 		// TODO: Fill in
+		Boolean rented = c.getRented();
+
+		assertEquals(false, rented);
 	}
 
 	/**
@@ -95,6 +106,9 @@ public class CatUnitTest {
 	@Test
 	public void testToString() {
 		// TODO: Fill in
+		String str = c.toString();
+
+		assertEquals("ID 1. Jennyanydots" , str);
 	}
 
 	/**
@@ -110,6 +124,10 @@ public class CatUnitTest {
 	@Test
 	public void testRentCat() {
 		// TODO: Fill in
+		c.rentCat();
+		boolean rented = c.getRented(); 
+
+		assertEquals(true, rented);
 	}
 
 	/**
@@ -126,6 +144,13 @@ public class CatUnitTest {
 	@Test
 	public void testReturnCat() {
 		// TODO: Fill in
+		c.rentCat();
+		assertEquals(true, c.getRented());
+
+		c.returnCat();
+		boolean rented = c.getRented();
+
+		assertEquals(false, rented);
 	}
 
 	/**
@@ -141,6 +166,10 @@ public class CatUnitTest {
 	@Test
 	public void testRenameCat() {
 		// TODO: Fill in
+		c.renameCat("Garfield");
+		
+		assertEquals("Garfield", c.getName());
+		assertEquals("ID 1. Garfield", c.toString());
 	}
 
 }
